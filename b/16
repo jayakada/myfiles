@@ -1,0 +1,949 @@
+
+
+I'll keep the steps simple so you can follow them directly while performing the lab.
+
+### Cisco Packet Tracer – 9 practical experiments
+
+Before starting: Open Cisco Packet Tracer → File → New. For each experiment, create a separate project or save it with a different name.
+
+### Experiment 1 – Basic LAN Setup and IP Addressing Between PCs
+
+2 PCs + 1 Switch
+
+Devices required
+
+* 2 PCs
+
+* 1 Cisco 2960 Switch
+
+* 2 Copper Straight-Through cables
+
+Step 1: Add devices
+
+* Select End Devices → drag PC0 and PC1.
+
+* Select Switches → drag a 2960 switch.
+
+Step 2: Connect devices
+
+Choose Connections (lightning icon) → Copper Straight-Through.
+
+* PC0 FastEthernet0 → Switch FastEthernet0/1
+
+* PC1 FastEthernet0 → Switch FastEthernet0/2
+
+Step 3: Configure IP addresses
+
+Click PC0 → Desktop → IP Configuration.
+
+| Setting         | PC0           |
+| --------------- | ------------- |
+| IP Address      | 192.168.1.1   |
+| Subnet Mask     | 255.255.255.0 |
+| Default Gateway | Leave blank   |
+
+Click PC1 → Desktop → IP Configuration.
+
+| Setting         | PC1           |
+| --------------- | ------------- |
+| IP Address      | 192.168.1.2   |
+| Subnet Mask     | 255.255.255.0 |
+| Default Gateway | Leave blank   |
+
+Step 4: Test the connection
+
+PC0 → Desktop → Command Prompt:
+
+```cmd
+ipconfig
+ping 192.168.1.2
+```
+
+PC1:
+
+```cmd
+ping 192.168.1.1
+```
+
+Both PCs should receive successful ping replies. Packets sent: 4, received: 4, lost: 0.
+
+### Experiment 2 – Network Topology Creation (Star, Bus, Ring)
+
+Devices required
+
+* 3 PCs
+
+* 1 Cisco 2960 Switch
+
+* Copper Straight-Through cables
+
+* For the ring demonstration: 3 switches and 3 PCs
+
+### Part A – Star topology
+
+Step 1: Add 3 PCs and 1 switch.
+
+Step 2: Connect each PC to the switch.
+
+* PC0 → Switch Fa0/1
+
+* PC1 → Switch Fa0/2
+
+* PC2 → Switch Fa0/3
+
+Step 3: Assign IP addresses.
+
+| PC  | IP Address  | Subnet Mask   |
+| --- | ----------- | ------------- |
+| PC0 | 192.168.1.1 | 255.255.255.0 |
+| PC1 | 192.168.1.2 | 255.255.255.0 |
+| PC2 | 192.168.1.3 | 255.255.255.0 |
+
+Step 4: Test from PC0:
+
+```cmd
+ping 192.168.1.2
+ping 192.168.1.3
+```
+
+### Part B – Bus topology (simulation)
+
+Packet Tracer does not provide a true shared-cable Ethernet bus topology in this experiment. Simulate the shared communication network using a hub or switch.
+
+Step 1: Add 3 PCs and 1 hub or switch.
+
+Step 2: Connect all three PCs to the hub/switch.
+
+Step 3: Assign these addresses:
+
+| PC  | IP Address  |
+| --- | ----------- |
+| PC0 | 192.168.2.1 |
+| PC1 | 192.168.2.2 |
+| PC2 | 192.168.2.3 |
+
+Subnet mask for all: `255.255.255.0`.
+
+Step 4: Test:
+
+```cmd
+ping 192.168.2.2
+ping 192.168.2.3
+```
+
+### Part C – Ring topology (conceptual simulation)
+
+The record describes a ring-like representation using three switches.
+
+Step 1: Drag 3 switches: Switch0, Switch1 and Switch2.
+
+Step 2: Connect them in a loop:
+
+* Switch0 ↔ Switch1
+
+* Switch1 ↔ Switch2
+
+* Switch2 ↔ Switch0
+
+Step 3: Attach one PC to each switch.
+
+Step 4: Assign all PCs addresses in the same subnet, for example:
+
+* PC0: `192.168.3.1`
+
+* PC1: `192.168.3.2`
+
+* PC2: `192.168.3.3`
+
+* Subnet mask: `255.255.255.0`
+
+The loop is a teaching representation, not a true Ethernet ring. Switch loop-prevention may block one of the links, so treat this part mainly as a topology demonstration.
+
+### Experiment 3 – Ping Command for Connectivity Testing
+
+Devices required
+
+* 2 PCs
+
+* 1 Cisco 2960 Switch
+
+* 2 Copper Straight-Through cables
+
+Step 1: Create the topology
+
+Connect:
+
+* PC0 → Switch Fa0/1
+
+* PC1 → Switch Fa0/2
+
+Step 2: Configure IP addresses
+
+| Device | IP Address  | Subnet Mask   |
+| ------ | ----------- | ------------- |
+| PC0    | 192.168.1.1 | 255.255.255.0 |
+| PC1    | 192.168.1.2 | 255.255.255.0 |
+
+Step 3: Verify configuration
+
+On PC0 → Desktop → Command Prompt:
+
+```cmd
+ipconfig
+```
+
+Step 4: Run the Ping command
+
+```cmd
+ping 192.168.1.2
+```
+
+Then from PC1:
+
+```cmd
+ping 192.168.1.1
+```
+
+Step 5: Observe ICMP packets
+
+* Switch from Realtime to Simulation mode.
+
+* Click Edit Filters.
+
+* Enable ARP and ICMP.
+
+* Run the ping command again.
+
+* Click Capture/Forward repeatedly.
+
+Observe:
+
+```text
+ARP Request
+     ↓
+ARP Reply
+     ↓
+ICMP Echo Request
+     ↓
+ICMP Echo Reply
+```
+
+Successful ping replies and visible ICMP packet exchange.
+
+### Experiment 4 – ARP Protocol Simulation in LAN
+
+Devices required
+
+* 2 PCs
+
+* 1 Cisco 2960 Switch
+
+* 2 Copper Straight-Through cables
+
+Step 1: Create the topology
+
+Connect PC0 and PC1 to the switch.
+
+Step 2: Configure IP addresses
+
+| Device | IP Address   | Subnet Mask   |
+| ------ | ------------ | ------------- |
+| PC0    | 192.168.1.10 | 255.255.255.0 |
+| PC1    | 192.168.1.20 | 255.255.255.0 |
+
+Step 3: Test connectivity
+
+On PC0 → Desktop → Command Prompt:
+
+```cmd
+ping 192.168.1.20
+```
+
+Step 4: Observe ARP
+
+* Select Simulation mode.
+
+* Click Edit Filters.
+
+* Enable ARP and ICMP only.
+
+* Clear previous events.
+
+* Run:
+
+```cmd
+ping 192.168.1.20
+```
+
+6\. Click Capture/Forward repeatedly.
+
+Observe:
+
+```text
+PC0
+  |
+  | ARP Request (Broadcast)
+  ↓
+Switch
+  |
+  ↓
+PC1
+  |
+  | ARP Reply (Unicast)
+  ↓
+Switch
+  |
+  ↓
+PC0
+```
+
+Step 5: Check the ARP table
+
+On PC0:
+
+```cmd
+arp -a
+```
+
+You should see PC1's IP address and its corresponding MAC address.
+
+ARP Request and ARP Reply should be visible, and the ARP table should contain the destination MAC address.
+
+### Experiment 5 – Ethernet LAN Setup Using Switch
+
+Devices required
+
+* 4 PCs
+
+* 1 Cisco 2960 Switch
+
+* 4 Copper Straight-Through cables
+
+Step 1: Add devices
+
+Drag four PCs and one 2960 switch.
+
+Step 2: Connect devices
+
+| PC  | Switch Port |
+| --- | ----------- |
+| PC0 | Fa0/1       |
+| PC1 | Fa0/2       |
+| PC2 | Fa0/3       |
+| PC3 | Fa0/4       |
+
+Step 3: Assign IP addresses
+
+| Device | IP Address   | Subnet Mask   |
+| ------ | ------------ | ------------- |
+| PC0    | 192.168.1.10 | 255.255.255.0 |
+| PC1    | 192.168.1.11 | 255.255.255.0 |
+| PC2    | 192.168.1.12 | 255.255.255.0 |
+| PC3    | 192.168.1.13 | 255.255.255.0 |
+
+Configure each through Desktop → IP Configuration.
+
+Step 4: Test communication
+
+From PC0:
+
+```cmd
+ping 192.168.1.11
+ping 192.168.1.12
+ping 192.168.1.13
+```
+
+Step 5: Check the switch MAC address table
+
+Click the switch → CLI → press Enter.
+
+```text
+enable
+show mac address-table
+```
+
+The switch should display learned MAC addresses and the ports connected to the PCs.
+
+All four PCs communicate successfully, and the switch learns their MAC addresses.
+
+### Experiment 6 – Wireless LAN (Wi-Fi) Configuration
+
+Wireless network
+
+Devices required
+
+* 1 Wireless Router (WRT300N)
+
+* 2 Laptops
+
+* 1 PC
+
+* 1 Copper Straight-Through cable
+
+Step 1: Add devices
+
+* Select Wireless Devices → drag WRT300N.
+
+* Select End Devices → add PC0, Laptop0 and Laptop1.
+
+Step 2: Connect the wired PC
+
+Choose Copper Straight-Through cable.
+
+\- PC0 FastEthernet0 → Wireless Router Ethernet Port 1.
+
+Step 3: Configure wireless router
+
+* Click WRT300N.
+
+* Open the GUI tab.
+
+* Configure:
+
+| Parameter   | Value         |
+| ----------- | ------------- |
+| Router IP   | 192.168.0.1   |
+| Subnet Mask | 255.255.255.0 |
+| DHCP Server | Enabled       |
+
+Step 4: Configure Wi-Fi
+
+Go to GUI → Wireless.
+
+| Parameter    | Value       |
+| ------------ | ----------- |
+| SSID         | CollegeWiFi |
+| Network Mode | Mixed       |
+| Channel      | Auto        |
+
+Step 5: Configure security
+
+Go to Wireless → Wireless Security.
+
+| Parameter     | Value         |
+| ------------- | ------------- |
+| Security Mode | WPA2 Personal |
+| Encryption    | AES           |
+| Passphrase    | College@123   |
+
+Save the configuration.
+
+Step 6: Connect Laptop0
+
+* Click Laptop0.
+
+* Open Desktop → PC Wireless.
+
+* Select Connect.
+
+* Choose `CollegeWiFi`.
+
+* Enter password `College@123`.
+
+* Click Connect.
+
+Step 7: Connect Laptop1
+
+Repeat the same steps for Laptop1.
+
+Step 8: Configure IP addresses
+
+On PC0, Laptop0 and Laptop1:
+
+Desktop → IP Configuration → select DHCP.
+
+Example addresses:
+
+| Device  | Example IP    |
+| ------- | ------------- |
+| PC0     | 192.168.0.100 |
+| Laptop0 | 192.168.0.101 |
+| Laptop1 | 192.168.0.102 |
+
+Step 9: Test communication
+
+On Laptop0 → Command Prompt:
+
+```cmd
+ping 192.168.0.100
+ping 192.168.0.102
+ping 192.168.0.1
+```
+
+Both laptops connect to Wi-Fi, receive IP addresses through DHCP and communicate with the wired PC and router.
+
+### Experiment 13 – HTTP Web Server and Client Communication
+
+Devices required
+
+* 1 Cisco 2911 Router
+
+* 1 Cisco 2960 Switch
+
+* 1 Server
+
+* 1 PC (PC1 optional)
+
+* 4 Copper Straight-Through cables
+
+Step 1: Create topology
+
+Drag the devices into the workspace.
+
+Connect:
+
+* Router G0/0 → Switch
+
+* Server FastEthernet0 → Switch
+
+* PC0 FastEthernet0 → Switch
+
+* Optional PC1 → Switch
+
+Step 2: Configure router
+
+Click Router → CLI → enter:
+
+```text
+enable
+configure terminal
+interface g0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+copy running-config startup-config
+```
+
+If asked for the destination filename, press Enter.
+
+Step 3: Configure server IP
+
+Server → Desktop → IP Configuration.
+
+| Parameter       | Value         |
+| --------------- | ------------- |
+| IP Address      | 192.168.1.100 |
+| Subnet Mask     | 255.255.255.0 |
+| Default Gateway | 192.168.1.1   |
+
+Step 4: Enable HTTP
+
+* Click Server.
+
+* Select Services.
+
+* Select HTTP.
+
+* Set HTTP Service to ON.
+
+Step 5: Create a webpage
+
+In the HTTP window, edit `index.html` and replace its contents with:
+
+```html
+<html>
+<head>
+<title>Computer Networks Lab</title>
+</head>
+<body bgcolor="lightblue">
+<h1 align="center">
+WELCOME TO COMPUTER NETWORKS LAB
+</h1>
+<hr>
+<h2 align="center">
+HTTP Web Server Successfully Configured
+</h2>
+<p align="center">
+Department of Computer Science and Engineering
+</p>
+<p align="center">
+Cisco Packet Tracer Laboratory Experiment
+</p>
+</body>
+</html>
+```
+
+Click Save.
+
+Step 6: Configure PC0
+
+PC0 → Desktop → IP Configuration.
+
+| Parameter       | Value         |
+| --------------- | ------------- |
+| IP Address      | 192.168.1.10  |
+| Subnet Mask     | 255.255.255.0 |
+| Default Gateway | 192.168.1.1   |
+
+Step 7: Test connectivity
+
+PC0 → Desktop → Command Prompt:
+
+```cmd
+ping 192.168.1.100
+```
+
+Step 8: Open website
+
+* PC0 → Desktop → Web Browser.
+
+* Enter:
+
+```text
+http://192.168.1.100
+```
+
+3\. Click Go.
+
+You should see:
+
+* WELCOME TO COMPUTER NETWORKS LAB
+
+* HTTP Web Server Successfully Configured
+
+The webpage hosted on the server should open successfully on PC0.
+
+### Experiment 14 – FTP File Transfer Between Client and Server
+
+Devices required
+
+* 1 PC
+
+* 1 Server
+
+* 1 Cisco 2960 Switch
+
+* 2 Copper Straight-Through cables
+
+Step 1: Create topology
+
+Connect:
+
+* PC0 → Switch
+
+* Server0 → Switch
+
+Step 2: Configure PC0
+
+PC0 → Desktop → IP Configuration.
+
+| Parameter   | Value         |
+| ----------- | ------------- |
+| IP Address  | 192.168.1.2   |
+| Subnet Mask | 255.255.255.0 |
+| Gateway     | 192.168.1.1   |
+
+Step 3: Configure Server0
+
+Server0 → Desktop → IP Configuration.
+
+| Parameter   | Value         |
+| ----------- | ------------- |
+| IP Address  | 192.168.1.10  |
+| Subnet Mask | 255.255.255.0 |
+| Gateway     | 192.168.1.1   |
+
+Step 4: Test connection
+
+PC0 → Desktop → Command Prompt:
+
+```cmd
+ping 192.168.1.10
+```
+
+Step 5: Enable FTP
+
+* Click Server0.
+
+* Select Services.
+
+* Select FTP.
+
+* Turn FTP Service ON.
+
+Step 6: Create FTP user
+
+Enter:
+
+| Parameter | Value    |
+| --------- | -------- |
+| Username  | student  |
+| Password  | cisco123 |
+
+Click Add.
+
+Step 7: Create a server file
+
+In the FTP service window, create:
+
+* Filename: `network.txt`
+
+* Contents:
+
+```text
+Welcome to FTP Server
+Cisco Packet Tracer Lab
+Networking Practical
+```
+
+Save the file.
+
+Step 8: Connect from PC0
+
+PC0 → Desktop → Command Prompt:
+
+```cmd
+ftp 192.168.1.10
+```
+
+Enter the login details:
+
+```text
+Username: student
+Password: cisco123
+```
+
+Step 9: Display available files
+
+```cmd
+dir
+```
+
+You should see:
+
+```text
+network.txt
+```
+
+Step 10: Download the file
+
+```cmd
+get network.txt
+```
+
+Expected output:
+
+```text
+Receiving network.txt...
+Transfer Complete
+```
+
+Step 11: Upload a file (optional)
+
+Create `student.txt` on the client if the Packet Tracer client supports local file creation, then run:
+
+```cmd
+put student.txt
+```
+
+Expected output:
+
+```text
+Transfer Complete
+```
+
+Step 12: Exit FTP
+
+```cmd
+bye
+```
+
+Step 13: Observe FTP packets
+
+* Switch to Simulation Mode.
+
+* Click Edit Filters.
+
+* Enable FTP and TCP.
+
+* Click Capture/Forward repeatedly.
+
+Observe:
+
+```text
+TCP SYN
+   ↓
+TCP SYN-ACK
+   ↓
+TCP ACK
+   ↓
+FTP Login
+   ↓
+Username and Password
+   ↓
+File Request
+   ↓
+File Transfer
+   ↓
+TCP ACK
+   ↓
+FIN / ACK
+```
+
+FTP login succeeds and the client downloads `network.txt` from the server. FTP uses TCP, with control communication on port 21.
+
+### Experiment 15 – TCP vs UDP Basic Communication Simulation
+
+Devices required
+
+* 1 Cisco 2960 Switch
+
+* 1 PC
+
+* 1 Server
+
+* 2 Copper Straight-Through cables
+
+Step 1: Create topology
+
+Connect:
+
+* PC0 → Switch
+
+* Server0 → Switch
+
+Step 2: Configure PC0
+
+PC0 → Desktop → IP Configuration.
+
+| Parameter   | Value         |
+| ----------- | ------------- |
+| IP Address  | 192.168.1.2   |
+| Subnet Mask | 255.255.255.0 |
+| Gateway     | 192.168.1.1   |
+
+Step 3: Configure Server0
+
+Server0 → Desktop → IP Configuration.
+
+| Parameter   | Value         |
+| ----------- | ------------- |
+| IP Address  | 192.168.1.10  |
+| Subnet Mask | 255.255.255.0 |
+| Gateway     | 192.168.1.1   |
+
+Step 4: Test connectivity
+
+On PC0 → Command Prompt:
+
+```cmd
+ping 192.168.1.10
+```
+
+### Part A – TCP communication
+
+Step 5: Enable HTTP
+
+* Click Server0.
+
+* Open Services → HTTP.
+
+* Turn HTTP ON.
+
+Step 6: Access HTTP page
+
+PC0 → Desktop → Web Browser.
+
+Enter:
+
+```text
+http://192.168.1.10
+```
+
+The default webpage should appear.
+
+Step 7: Observe TCP packets
+
+* Switch to Simulation Mode.
+
+* Open Edit Filters.
+
+* Enable TCP and HTTP.
+
+* Click Capture/Forward repeatedly.
+
+Observe:
+
+```text
+TCP SYN
+   ↓
+TCP SYN-ACK
+   ↓
+TCP ACK
+   ↓
+HTTP GET
+   ↓
+HTTP Response
+   ↓
+TCP FIN
+   ↓
+TCP ACK
+```
+
+This demonstrates TCP's three-way handshake before data communication.
+
+### Part B – UDP communication using DNS
+
+Step 8: Enable DNS service
+
+* Click Server0.
+
+* Select Services → DNS.
+
+* Turn DNS ON.
+
+Create a DNS record:
+
+| Parameter | Value        |
+| --------- | ------------ |
+| Name      | server.com   |
+| Address   | 192.168.1.10 |
+
+Click Add.
+
+Step 9: Configure DNS on PC0
+
+PC0 → Desktop → IP Configuration.
+
+Set DNS Server:
+
+```text
+192.168.1.10
+```
+
+Keep the PC's IP address and subnet mask unchanged.
+
+Step 10: Test DNS
+
+PC0 → Desktop → Web Browser.
+
+Enter:
+
+```text
+http://server.com
+```
+
+The browser should resolve the domain and display the server webpage.
+
+Step 11: Observe UDP packets
+
+* Switch to Simulation Mode.
+
+* Open Edit Filters.
+
+* Enable UDP and DNS.
+
+* Click Capture/Forward.
+
+Observe:
+
+```text
+DNS Query
+    ↓
+DNS Response
+```
+
+DNS uses UDP for this query. After the name is resolved, the HTTP webpage communication uses TCP.
+
+TCP communication shows a three-way handshake, while DNS communication using UDP shows a query and response without a TCP handshake.
+
