@@ -1,6 +1,15 @@
 AIM
 To design and develop a static web page using HTML and CSS with a header, navigation menu, content sections and footer.
 
+
+Procedure
+1. HTML and CSS – Static Webpage
+1. Open a text editor (VS Code / Notepad).
+2. Create an HTML file and write the HTML structure.
+3. Add CSS styles for background, header, navigation and content.
+4. Save the file as 1.html.
+5. Open it in a web browser and observe the webpage.
+
 PROGRAM
 Save the following code as 1.html and open it in a web browser.
 
