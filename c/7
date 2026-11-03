@@ -1,6 +1,18 @@
 AIM
 To design and develop a full-stack web application using frontend, backend, REST API and database technologies for managing student details.
 
+PROCEDURE:
+
+Full-Stack Student Management Application
+1. Create a MySQL database and student table.
+2. Install Express, MySQL and CORS packages.
+3. Create the backend using Node.js and Express.
+4. Create the frontend using HTML, CSS and JavaScript.
+5. Connect frontend and backend using Fetch API.
+6. Store and retrieve student details from MySQL.
+7. Run node server.js and open http://localhost:3000.
+8. Enter student details and verify them in the student list.
+
 PROGRAM
 
 STEP 1: Create database in MySQL
