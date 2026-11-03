@@ -1,6 +1,15 @@
 AIM
 To develop a webpage using JavaScript for form validation and DOM manipulation.
 
+
+PROCEDURE
+1. Create an HTML registration form.
+2. Add Name, Email and Age input fields.
+3. Write JavaScript using DOM methods.
+4. Validate the entered details using conditional statements.
+5. Display error or success messages after submission.
+6. Save as 3.html and test the form.
+
 PROGRAM
 Save the following code as 3.html and open it in a web browser.
 
