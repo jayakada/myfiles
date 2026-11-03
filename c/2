@@ -1,0 +1,97 @@
+AIM
+To develop a responsive web layout using CSS Flexbox and Grid that adjusts automatically to different screen sizes.
+
+PROGRAM
+Save the following code as 2.html and open it in a browser. Resize the browser window to check the layout.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Responsive Web Design</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card"><h2>HTML</h2><p>Creates webpage structure.</p></div>
+        <div class="card"><h2>CSS</h2><p>Styles the webpage.</p></div>
+        <div class="card"><h2>Flexbox</h2><p>Arranges items in one direction.</p></div>
+        <div class="card"><h2>Grid</h2><p>Arranges items in rows and columns.</p></div>
+        <div class="card"><h2>Responsive Design</h2><p>Adapts to screen sizes.</p></div>
+        <div class="card"><h2>Web Development</h2><p>Builds websites.</p></div>
+    </main>
+</body>
+</html>
+
+OUTPUT
+The webpage displays a header, navigation menu and six content cards.
+- Desktop: cards appear in three columns.
+- Tablet: cards appear in two columns.
+- Mobile: cards appear in one column.
+
+RESULT
+Thus, a responsive web layout was successfully developed using CSS Flexbox, Grid and media queries.

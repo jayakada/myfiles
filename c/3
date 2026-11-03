@@ -1,0 +1,104 @@
+AIM
+To develop a webpage using JavaScript for form validation and DOM manipulation.
+
+PROGRAM
+Save the following code as 3.html and open it in a web browser.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+        .container {
+            width: 350px;
+            margin: auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="heading">Registration Form</h2>
+
+        <form id="myForm">
+            <label>Name:</label>
+            <input type="text" id="name">
+
+            <label>Email:</label>
+            <input type="text" id="email">
+
+            <label>Age:</label>
+            <input type="number" id="age">
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // DOM Manipulation
+        document.getElementById("heading").textContent = "User Registration";
+
+        // Form Validation
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let age = document.getElementById("age").value;
+            let message = document.getElementById("message");
+
+            if (name === "") {
+                message.textContent = "Please enter your name.";
+                message.style.color = "red";
+            }
+            else if (email === "" || !email.includes("@")) {
+                message.textContent = "Please enter a valid email.";
+                message.style.color = "red";
+            }
+            else if (age === "" || age < 18) {
+                message.textContent = "Age must be 18 or above.";
+                message.style.color = "red";
+            }
+            else {
+                message.textContent = "Registration Successful! Welcome " + name;
+                message.style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>
+
+OUTPUT
+The registration form is displayed with Name, Email and Age fields.
+- Empty name: “Please enter your name.”
+- Invalid email: “Please enter a valid email.”
+- Age below 18: “Age must be 18 or above.”
+- Valid details: “Registration Successful!”
+
+RESULT
+Thus, form validation and DOM manipulation were successfully performed using JavaScript methods such as getElementById(), textContent, style and addEventListener().

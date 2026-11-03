@@ -1,0 +1,98 @@
+AIM
+To design and develop a static web page using HTML and CSS with a header, navigation menu, content sections and footer.
+
+PROGRAM
+Save the following code as 1.html and open it in a web browser.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Static Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        nav {
+            background-color: #555;
+            text-align: center;
+            padding: 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            display: flex;
+            gap: 20px;
+        }
+        .box {
+            background-color: white;
+            padding: 25px;
+            flex: 1;
+            text-align: center;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Web Page</h1>
+        <p>Static Web Page Using HTML and CSS</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <div class="box">
+            <h2>HTML</h2>
+            <p>HTML is used to create the structure of a webpage.</p>
+        </div>
+        <div class="box">
+            <h2>CSS</h2>
+            <p>CSS is used to add colours, fonts and styles.</p>
+        </div>
+        <div class="box">
+            <h2>Web Design</h2>
+            <p>HTML and CSS help create attractive web pages.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright 2026 - My Web Page</p>
+    </footer>
+</body>
+</html>
+
+OUTPUT
+The browser displays a static webpage containing:
+1. A header with the page title and description.
+2. A navigation bar with Home, About, Services and Contact links.
+3. Three content boxes for HTML, CSS and Web Design.
+4. A footer with copyright information.
+
+RESULT
+Thus, a static web page was successfully designed using HTML and CSS.

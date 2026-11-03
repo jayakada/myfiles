@@ -1,0 +1,56 @@
+AIM
+To develop a simple server-side application using Node.js that creates a web server and responds to client requests.
+
+PROGRAM
+1. Install Node.js.
+2. Create a file named 5.js and enter the following program.
+
+const http = require("http");
+
+// Create HTTP server
+const server = http.createServer((request, response) => {
+
+    // Set response header
+    response.writeHead(200, {
+        "Content-Type": "text/html"
+    });
+
+    // Send HTML response to client
+    response.end(`
+        <html>
+        <head>
+            <title>Node.js Server</title>
+        </head>
+        <body>
+            <h1>Welcome to Node.js Server</h1>
+            <p>This is a server-side application.</p>
+        </body>
+        </html>
+    `);
+});
+
+// Start server on port 3000
+server.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+
+EXECUTION
+1. Open Command Prompt or terminal in the folder containing 5.js.
+2. Run the command:
+
+node 5.js
+
+3. Open a web browser and enter:
+
+http://localhost:3000
+
+OUTPUT
+The terminal displays:
+Server running at http://localhost:3000
+
+The browser displays:
+Welcome to Node.js Server
+This is a server-side application.
+
+RESULT
+Thus, a server-side application was successfully developed using Node.js. The HTTP server accepts client requests and sends an HTML response.

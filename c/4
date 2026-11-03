@@ -1,0 +1,86 @@
+AIM
+To develop an AJAX-based web application that retrieves data from a server asynchronously without reloading the entire webpage.
+
+PROGRAM
+Save the following code as 4.html. Open it in a browser with internet access and click the Load Data button.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Web Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+        .container {
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AJAX Web Application</h1>
+        <button onclick="loadData()">Load Data</button>
+        <div id="result">Click the button to load data.</div>
+    </div>
+
+    <script>
+        function loadData() {
+            // Create XMLHttpRequest object
+            let xhr = new XMLHttpRequest();
+
+            // Open asynchronous GET request
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+
+            // Handle server response
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    let data = JSON.parse(xhr.responseText);
+
+                    document.getElementById("result").innerHTML =
+                        "<h3>" + data.title + "</h3>" +
+                        "<p>" + data.body + "</p>";
+                }
+                else {
+                    document.getElementById("result").textContent = "Error loading data.";
+                }
+            };
+
+            // Handle network error
+            xhr.onerror = function() {
+                document.getElementById("result").textContent = "Network error occurred.";
+            };
+
+            // Send request
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
+
+OUTPUT
+Initially, the page displays “Click the button to load data.”
+After clicking Load Data, the server response (post title and body) is displayed on the same page without refreshing it.
+
+RESULT
+Thus, an AJAX-based web application was successfully developed to retrieve server data asynchronously and display it without reloading the webpage.

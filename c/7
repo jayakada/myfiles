@@ -1,0 +1,189 @@
+AIM
+To design and develop a full-stack web application using frontend, backend, REST API and database technologies for managing student details.
+
+PROGRAM
+
+STEP 1: Create database in MySQL
+
+CREATE DATABASE studentdb;
+USE studentdb;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    department VARCHAR(100)
+);
+
+STEP 2: Install required packages
+
+npm init -y
+npm install express mysql2 cors
+
+STEP 3: Create backend file named server.js
+
+const express = require("express");
+const mysql = require("mysql2");
+const cors = require("cors");
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(express.static("public"));
+
+// Database connection
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "studentdb"
+});
+
+db.connect((err) => {
+    if (err) {
+        console.log("Database connection failed");
+    } else {
+        console.log("Database connected successfully");
+    }
+});
+
+// Add student
+app.post("/students", (req, res) => {
+    const { name, email, department } = req.body;
+    const sql = "INSERT INTO students (name, email, department) VALUES (?, ?, ?)";
+
+    db.query(sql, [name, email, department], (err) => {
+        if (err) return res.status(500).send(err);
+        res.json({ message: "Student added successfully" });
+    });
+});
+
+// Display students
+app.get("/students", (req, res) => {
+    db.query("SELECT * FROM students", (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.json(result);
+    });
+});
+
+// Start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+
+STEP 4: Create a folder named public. Inside it create index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+        .container {
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Management System</h2>
+
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="text" id="department" placeholder="Enter Department">
+
+        <button onclick="addStudent()">Add Student</button>
+
+        <h3>Student List</h3>
+        <ul id="studentList"></ul>
+    </div>
+
+    <script>
+        // Add student through REST API
+        function addStudent() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let department = document.getElementById("department").value;
+
+            fetch("/students", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    department: department
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                loadStudents();
+            });
+        }
+
+        // Display student records
+        function loadStudents() {
+            fetch("/students")
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById("studentList");
+                list.innerHTML = "";
+
+                data.forEach(student => {
+                    let item = document.createElement("li");
+                    item.textContent = student.name + " - " +
+                        student.email + " - " + student.department;
+                    list.appendChild(item);
+                });
+            });
+        }
+
+        // Load records when page opens
+        loadStudents();
+    </script>
+</body>
+</html>
+
+FOLDER STRUCTURE
+project/
+    server.js
+    public/
+        index.html
+
+EXECUTION
+1. Start MySQL and make sure the studentdb database is created.
+2. Open terminal in the project folder.
+3. Run:
+
+node server.js
+
+4. Open the browser and enter:
+
+http://localhost:3000
+
+5. Enter student name, email and department, then click Add Student.
+
+OUTPUT
+The Student Management System page is displayed with input fields and an Add Student button. After entering details, the student is saved in MySQL and displayed under Student List.
+
+RESULT
+Thus, a full-stack web application was successfully developed using HTML, CSS and JavaScript for the frontend, Node.js and Express.js for the backend, REST API for communication and MySQL for database connectivity.
