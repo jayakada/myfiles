@@ -1,6 +1,15 @@
 AIM
 To develop a REST API using Node.js and Express.js and establish MySQL database connectivity to perform CRUD operations (Create, Read, Update and Delete).
 
+PROCEDURE:
+REST API – Express and MySQL
+1. Install Node.js, Express and MySQL packages.
+2. Create a MySQL database and student table.
+3. Connect the database with the Express application.
+4. Create REST API routes using GET, POST, PUT and DELETE.
+5. Start the server using node 6.js.
+6. Test all CRUD operations using Postman.
+
 PROGRAM
 
 STEP 1: Install required packages
