@@ -1,18 +1,19 @@
 AIM
 To develop a responsive web layout using CSS Flexbox and Grid that adjusts automatically to different screen sizes.
 
-PROGRAM
-Save the following code as 2.html and open it in a browser. Resize the browser window to check the layout.
+procedure:
 
-procedure
-
-2. Responsive Web Design – Flexbox and Grid
+ Responsive Web Design – Flexbox and Grid
 1. Create an HTML file.
 2. Design a header, navigation menu and content cards.
 3. Apply CSS Flexbox and Grid properties.
 4. Add media queries for tablet and mobile screens.
 5. Save as 2.html and resize the browser to test responsiveness.
 
+
+
+PROGRAM
+Save the following code as 2.html and open it in a browser. Resize the browser window to check the layout.
 
 <!DOCTYPE html>
 <html lang="en">
