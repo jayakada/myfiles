@@ -1,6 +1,17 @@
 AIM
 To develop an AJAX-based web application that retrieves data from a server asynchronously without reloading the entire webpage.
 
+PROCEDURE:
+
+
+ AJAX – Asynchronous Data Retrieval
+1. Create an HTML webpage with a Load Data button.
+2. Create an XMLHttpRequest object in JavaScript.
+3. Send an asynchronous GET request to the server.
+4. Receive and parse the JSON response.
+5. Display the received data without refreshing the webpage.
+6. Save as 4.html and run it with internet access.
+
 PROGRAM
 Save the following code as 4.html. Open it in a browser with internet access and click the Load Data button.
 
