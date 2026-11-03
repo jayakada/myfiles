@@ -1,6 +1,17 @@
 AIM
 To develop a simple server-side application using Node.js that creates a web server and responds to client requests.
 
+
+PROCEDURE:
+ Node.js – Web Server
+1. Install Node.js.
+2. Create a JavaScript file and import the HTTP module.
+3. Create a server using http.createServer().
+4. Define the response using writeHead() and end().
+5. Start the server using listen(3000).
+6. Run node 5.js and open http://localhost:3000 in a browser.
+
+
 PROGRAM
 1. Install Node.js.
 2. Create a file named 5.js and enter the following program.
